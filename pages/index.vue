@@ -1,6 +1,6 @@
 <template>
   <div>
-  <!-- <login/> -->
+  <Card/>
   <!-- <dashboard/> -->
 
   </div>

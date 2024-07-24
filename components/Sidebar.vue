@@ -1,5 +1,5 @@
 <template>
-  <aside class="w-64 bg-white text-[#193780] shadows h-full p-2 flex flex-col justify-between">
+  <aside class="w-64 fixed bg-white text-[#193780] shadows h-full p-2 flex flex-col justify-between">
     <div>
       <nav>
         <div class="pb-6">
@@ -8,7 +8,7 @@
         <div class="pb-3">
           <h1 class="bg-[#5C59E8] text-white rounded-xl p-2 flex items-center gap-2">
             <UIcon name="i-heroicons-squares-2x2" />
-            <NuxtLink to="/dashboard">Dashboard</NuxtLink>
+            <NuxtLink to="/">Dashboard</NuxtLink>
           </h1>
         </div>
         <ul>
@@ -21,10 +21,10 @@
           </li>
           <ul v-if="showLoanRequests" class="pl-6">
             <li class="flex items-center gap-2 rounded-xl p-2 hover:text-[#225CE8] hover:text-[#5C59E8]">
-              <NuxtLink to="/loan-requests/new">View Loan Request</NuxtLink>
+              <NuxtLink to="/loan">View Loan Request</NuxtLink>
             </li>
             <li class="flex items-center gap-2 rounded-xl p-2 hover:text-[#225CE8] hover:text-[#5C59E8]">
-              <NuxtLink to="/loan-requests/pending">Submit New Loan Requests</NuxtLink>
+              <NuxtLink to="/loan/new">Submit New Loan Requests</NuxtLink>
             </li>
           </ul>
           <li @click="toggleInvoices" class="flex justify-between  items-center gap-2 rounded-xl p-2 hover:bg-[#EFEFFD] hover:text-[#5C59E8] cursor-pointer">
@@ -36,10 +36,10 @@
           </li>
           <ul v-if="showInvoices" class="pl-6">
             <li class="flex items-center gap-2 rounded-xl p-2 hover:text-[#225CE8] hover:text-[#5C59E8]">
-              <NuxtLink to="/invoices/new">New Invoice</NuxtLink>
+              <NuxtLink to="/invoice/new">New Invoice</NuxtLink>
             </li>
             <li class="flex items-center gap-2 rounded-xl p-2 hover:text-[#225CE8] hover:text-[#5C59E8]">
-              <NuxtLink to="/invoices/pending">View All Invoices</NuxtLink>
+              <NuxtLink to="/invoice/pending">View All Invoices</NuxtLink>
             </li>
           </ul>
           <li class="flex items-center gap-2 rounded-xl p-2 hover:bg-[#EFEFFD] hover:text-[#5C59E8]">
@@ -63,6 +63,7 @@
       </ul>
     </div>
   </aside>
+  <!-- <h1>{{ alertMessage }}</h1> -->
 </template>
 
 
@@ -80,6 +81,18 @@ const toggleLoanRequests = () => {
 const toggleInvoices = () => {
   showInvoices.value = !showInvoices.value;
 };
+const alertMessage = ref();
+
+const greeting = new Date();
+const Hour = greeting.getHours();
+
+if(Hour < 12){
+  alertMessage.value = "good morning"
+}else if(Hour >=12 && Hour < 18){
+    alertMessage.value ="good afterNoon"
+}else{
+  alertMessage.value = "good Evenning"
+}
 </script>
 
 

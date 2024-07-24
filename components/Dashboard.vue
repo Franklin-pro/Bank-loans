@@ -6,8 +6,10 @@
       <div>
         <slot/>
       </div>
-      <!-- <Pharmacist/> -->
-      <!-- <Banker /> -->
+      <div>
+        <h1 class="text-primary p-6 text-2xl">{{ greetings }}</h1>
+      </div>
+    <!-- <InvoiceForm/> -->
     </main>
   </div>
 </template>
@@ -15,9 +17,25 @@
 <script setup>
 import Sidebar from '~/components/Sidebar.vue'
 import Navbar from '@/components/DashboardHeader.vue'
-import Banker from '~/pages/dashboards/banker.vue';
-import Insurer from '~/pages/dashboards/insurer.vue';
-import Pharmacist from '~/pages/dashboards/pharmacist.vue';
+import LoanRequestForm from './LoanRequestForm.vue';
+
+
+
+
+
+const greetings = ref()
+const userName = "Franklin"
+
+const message = new Date();
+const time = message.getHours();
+
+if(time < 12){
+  greetings.value =userName, + "Good Morning "
+}else if(time >= 12 && time < 18){
+  greetings.value = userName + " , " + "Good AfterNoon "
+}else{
+  greetings.value = userName, + "Good Evenning "
+}
 </script>
 
 <style scoped>
